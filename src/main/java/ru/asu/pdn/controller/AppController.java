@@ -35,8 +35,6 @@ public class AppController {
         Violation violation = new Violation();
         model.addAttribute("violation", violation);
 
-        Child child = new Child();
-        model.addAttribute("child", child);
         return "new_violation";
     }
 
@@ -53,8 +51,7 @@ public class AppController {
 
         Violation violation = violationService.get(id);
         mav.addObject("violation", violation);
-        Child child = new Child();
-        mav.addObject("child", child);
+
         return mav;
     }
 
