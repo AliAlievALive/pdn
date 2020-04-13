@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ru.asu.pdn.model.Child;
 import ru.asu.pdn.model.Violation;
 import ru.asu.pdn.service.impl.ChildServiceImpl;
 import ru.asu.pdn.service.impl.ViolationServiceImpl;
@@ -28,6 +27,13 @@ public class AppController {
         List<Violation> listViolations = violationService.listAll();
         model.addAttribute("listViolations", listViolations);
         return "index";
+    }
+
+    @RequestMapping("/violations")
+    public String viewViolations(Model model) {
+        List<Violation> listViolations = violationService.listAll();
+        model.addAttribute("listViolations", listViolations);
+        return "violations";
     }
 
     @RequestMapping("/new_violation")

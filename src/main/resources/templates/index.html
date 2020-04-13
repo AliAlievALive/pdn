@@ -1,55 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Протоколы</title>
+    <title>Система ведения отчетности нарушений</title>
 </head>
 <body>
-<div align="center">
-    <h1>Список протоколов</h1>
-    <a href="new_violation">Добавить новый протокол</a>
-    <br/><br/>
-    <table border="1" cellpadding="10">
-        <thead>
-        <tr>
-            <th>Номер Протокола</th>
-            <th>Дата протокола</th>
-            <th>Статья нарушения</th>
-            <th>Дата рассмотрения</th>
-            <th>Тип наложенного наказания</th>
-            <th>Взыскание</th>
-            <th>Количество извещений</th>
-            <th>Судебное решение</th>
-            <th>Дата решения</th>
-            <th>Возвращено на доработку</th>
-            <th>Прекращено по сроку давности</th>
-            <th>Адрес нарушения</th>
-            <th>ФИО ребенка</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="violation : ${listViolations}">
-            <td th:text="${violation.numProtocol}">Номер Протокола</td>
-            <td th:text="${violation.dateProtocol}">Дата протокола</td>
-            <td th:text="${violation.articleViolation}">Статья нарушения</td>
-            <td th:text="${violation.reviewDate}">Дата рассмотрения</td>
-            <td th:text="${violation.punishmentType}">Тип наложенного наказания</td>
-            <td th:text="${violation.collected}">Взыскание</td>
-            <td th:text="${violation.notificationsCount}">Количество извещений</td>
-            <td th:text="${violation.judgementDecision}">Судебное решение</td>
-            <td th:text="${violation.dateOfDecision}">Дата решения</td>
-            <td th:text="${violation.returnToModify}">Возвращено на доработку</td>
-            <td th:text="${violation.terminationBecauseDate}">Прекращено по сроку давности</td>
-            <td th:text="${violation.violationAddress}">Адрес нарушения</td>
-            <td th:text="${violation.child}">ФИО ребенка</td>
-            <td>
-                <a th:href="@{'/edit/' + ${violation.id}}">Внести правку</a>
-                <br/><br/>
-                <a th:href="@{'/delete/' + ${violation.id}}">Удалить протокол</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+<h1><a href="/violations">Добро пожаловать в систему мониторинга нарушений совершенных несовершеннолетними</a></h1>
 </body>
 </html>

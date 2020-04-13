@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Протоколы</title>
+</head>
+<body>
+<div align="center">
+    <div sec:authorize="hasRole('USER')">
+        <h3 th:inline="text">Добро пожаловать, [[${#httpServletRequest.remoteUser}]]</h3>
+    </div>
+
+    <h1>Список протоколов</h1>
+
+    <div sec:authorize="hasAnyRole('USER', 'ADMIN')">
+        <a href="new_violation">Добавить новый протокол</a>
+    </div>
+
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Номер Протокола</th>
+            <th>Дата протокола</th>
+            <th>Статья нарушения</th>
+            <th>Дата рассмотрения</th>
+            <th>Тип наложенного наказания</th>
+            <th>Взыскание</th>
+            <th>Количество извещений</th>
+            <th>Судебное решение</th>
+            <th>Дата решения</th>
+            <th>Возвращено на доработку</th>
+            <th>Прекращено по сроку давности</th>
+            <th>Адрес нарушения</th>
+            <th>ФИО ребенка</th>
+
+            <th sec:authorize="hasRole('ADMIN')">Изменить</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="violation : ${listViolations}">
+            <td th:text="${violation.numProtocol}">Номер Протокола</td>
+            <td th:text="${violation.dateProtocol}">Дата протокола</td>
+            <td th:text="${violation.articleViolation}">Статья нарушения</td>
+            <td th:text="${violation.reviewDate}">Дата рассмотрения</td>
+            <td th:text="${violation.punishmentType}">Тип наложенного наказания</td>
+            <td th:text="${violation.collected}">Взыскание</td>
+            <td th:text="${violation.notificationsCount}">Количество извещений</td>
+            <td th:text="${violation.judgementDecision}">Судебное решение</td>
+            <td th:text="${violation.dateOfDecision}">Дата решения</td>
+            <td th:text="${violation.returnToModify}">Возвращено на доработку</td>
+            <td th:text="${violation.terminationBecauseDate}">Прекращено по сроку давности</td>
+            <td th:text="${violation.violationAddress}">Адрес нарушения</td>
+            <td th:text="${violation.child}">ФИО ребенка</td>
+            <td sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{'/edit/' + ${violation.id}}">Внести правку</a>
+                <br/><br/>
+                <a th:href="@{'/delete/' + ${violation.id}}">Удалить протокол</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
