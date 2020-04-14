@@ -52,7 +52,7 @@ public class Child {
         this.birthDate = birthDate;
     }
 
-    @Column(name = "serial_num_pass")
+    @Column(unique = true, nullable = false, name = "serial_num_pass")
     public String getSerialNumPass() {
         return serialNumPass;
     }
@@ -130,7 +130,7 @@ public class Child {
         this.publicEducator = publicEducator;
     }
 
-    @OneToMany(mappedBy = "child", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     public Set<Violation> getViolations() {
         return violations;
     }
