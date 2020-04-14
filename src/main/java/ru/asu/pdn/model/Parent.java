@@ -103,9 +103,9 @@ public class Parent {
 
     @ManyToMany
     @JoinTable(
-            name = "parents_childs",
-            joinColumns = {@JoinColumn(name = "kids_id")},
-            inverseJoinColumns = {@JoinColumn(name = "family_id")}
+            name = "parent_child",
+            joinColumns = {@JoinColumn(name = "parent_id")},
+            inverseJoinColumns = {@JoinColumn(name = "child_id")}
     )
     public Set<Child> getChildSet() {
         return childSet;
