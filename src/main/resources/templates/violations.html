@@ -41,14 +41,14 @@
         <tbody>
         <tr th:each="violation : ${listViolations}">
             <td th:text="${violation.numProtocol}">Номер Протокола</td>
-            <td th:text="${violation.dateProtocol}">Дата протокола</td>
+            <td th:text="${#dates.format(violation.dateProtocol, 'dd.MM.yyyy')}">Дата протокола</td>
             <td th:text="${violation.articleViolation}">Статья нарушения</td>
-            <td th:text="${violation.reviewDate}">Дата рассмотрения</td>
+            <td th:text="${#dates.format(violation.reviewDate, 'dd.MM.yyyy')}">Дата рассмотрения</td>
             <td th:text="${violation.punishmentType}">Тип наложенного наказания</td>
             <td th:text="${violation.collected}">Взыскание</td>
             <td th:text="${violation.notificationsCount}">Количество извещений</td>
             <td th:text="${violation.judgementDecision}">Судебное решение</td>
-            <td th:text="${violation.dateOfDecision}">Дата решения</td>
+            <td th:text="${#dates.format(violation.dateOfDecision, 'dd.MM.yyyy')}">Дата решения</td>
             <td th:text="${violation.returnToModify}">Возвращено на доработку</td>
             <td th:text="${violation.terminationBecauseDate}">Прекращено по сроку давности</td>
             <td th:text="${violation.violationAddress}">Адрес нарушения</td>
