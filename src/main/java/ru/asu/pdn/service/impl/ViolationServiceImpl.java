@@ -14,7 +14,7 @@ public class ViolationServiceImpl implements ViolationService {
     private ViolationRepository repo;
 
     @Override
-    public List<Violation> listAll() {
+    public List<Violation> findAll() {
         return repo.findAll();
     }
 

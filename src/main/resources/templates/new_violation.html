@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Добавление нового протокола</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 <div align="center">
     <h1>Добавление нового протокола</h1>
     <h3><a href="/violations">Вернуться к списку протоколов</a></h3>
     <br/>
-    <form action="#" method="post" th:action="@{/save}" th:object="${violation}">
+    <form action="#" method="post" th:action="@{/new_violation}" th:object="${violation}">
         <table border="1" cellpadding="10">
             <thead>
             <tr>
@@ -30,19 +31,57 @@
             </thead>
             <tbody>
             <tr>
-                <th><input th:field="*{numProtocol}" type="text"/></th>
-                <th><input th:field="*{dateProtocol}" type="date"/></th>
-                <th><input th:field="*{articleViolation}" type="text"/></th>
-                <th><input th:field="*{reviewDate}" type="date"/></th>
-                <th><input th:field="*{punishmentType}" type="text"/></th>
-                <th><input th:field="*{collected}" type="text"/></th>
-                <th><input th:field="*{notificationsCount}" type="text"/></th>
-                <th><input th:field="*{judgementDecision}" type="text"/></th>
-                <th><input th:field="*{dateOfDecision}" type="date"/></th>
-                <th><input th:field="*{returnToModify}" type="text"/></th>
-                <th><input th:field="*{terminationBecauseDate}" type="text"/></th>
-                <th><input th:field="*{violationAddress}" type="text"/></th>
-                <th><input th:field="*{child}" type="text"/></th>
+                <th>
+                    <input type="text" th:field="*{numProtocol}"/>
+                    <span th:if="${#fields.hasErrors('numProtocol')}" th:errors="*{numProtocol}">
+                        Номер протокола должен быть длиннее 2 и короче 10 символов
+                    </span>
+                </th>
+                <th>
+                    <input th:field="*{dateProtocol}" type="date"/>
+                </th>
+                <th>
+                    <input th:field="*{articleViolation}" type="text"/>
+                    <span th:if="${#fields.hasErrors('articleViolation')}" th:errors="*{articleViolation}">
+                        Ошибка в выборе статьи нарушения
+                    </span>
+                </th>
+                <th>
+                    <input th:field="*{reviewDate}" type="date"/>
+                </th>
+                <th>
+                    <input th:field="*{punishmentType}" type="text"/>
+                    <span th:if="${#fields.hasErrors('punishmentType')}" th:errors="*{punishmentType}">
+                        Ошибка в выборе наложения
+                    </span>
+                </th>
+                <th>
+                    <input th:field="*{collected}" type="text"/>
+                </th>
+                <th>
+                    <input th:field="*{notificationsCount}" type="text"/>
+                </th>
+                <th>
+                    <input th:field="*{judgementDecision}" type="text"/>
+                </th>
+                <th>
+                    <input th:field="*{dateOfDecision}" type="date"/>
+                </th>
+                <th>
+                    <input th:field="*{returnToModify}" type="checkbox"/>
+                </th>
+                <th>
+                    <input th:field="*{terminationBecauseDate}" type="checkbox"/>
+                </th>
+                <th>
+                    <input th:field="*{violationAddress}" type="text"/>
+                    <span th:if="${#fields.hasErrors('violationAddress')}" th:errors="*{violationAddress}">
+                        Адрес нарушения не может быть пустым
+                    </span>
+                </th>
+                <th>
+                    <input th:field="*{child}" type="text"/>
+                </th>
             </tr>
             </tbody>
         </table>

@@ -1,22 +1,28 @@
 package ru.asu.pdn.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 
 @Entity
 @Table(name = "violation")
 public class Violation {
+    private final Date DEFAULT_DATE = new Date(2400, 01, 01);
 
     private long id;
     private int numProtocol;
     private Date dateProtocol;
     private String articleViolation;
-    private Date reviewDate;
+    private Date reviewDate = DEFAULT_DATE;
     private String punishmentType;
     private String collected;
     private int notificationsCount;
     private String judgementDecision;
-    private Date dateOfDecision;
+    private Date dateOfDecision = DEFAULT_DATE;
     private boolean returnToModify;
     private boolean terminationBecauseDate;
     private String violationAddress;
@@ -36,6 +42,8 @@ public class Violation {
         this.id = id;
     }
 
+    @Min(value = 100)
+    @Max(value = 999_999_999)
     @Column(name = "num_protocol")
     public int getNumProtocol() {
         return numProtocol;
@@ -46,6 +54,7 @@ public class Violation {
     }
 
     @Column(name = "date_protocol")
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     public Date getDateProtocol() {
         return dateProtocol;
     }
@@ -54,6 +63,7 @@ public class Violation {
         this.dateProtocol = dateProt;
     }
 
+    @NotBlank
     @Column(name = "article_violation")
     public String getArticleViolation() {
         return articleViolation;
@@ -64,14 +74,16 @@ public class Violation {
     }
 
     @Column(name = "review_date")
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     public Date getReviewDate() {
         return reviewDate;
     }
 
     public void setReviewDate(Date reviewDate) {
-        this.reviewDate = reviewDate;
+        this.reviewDate = reviewDate.equals("") ? DEFAULT_DATE : reviewDate;
     }
 
+    @NotBlank
     @Column(name = "punishment_type")
     public String getPunishmentType() {
         return punishmentType;
@@ -90,6 +102,7 @@ public class Violation {
         this.collected = collected;
     }
 
+    @Max(value = 50)
     @Column(name = "notifications_count")
     public int getNotificationsCount() {
         return notificationsCount;
@@ -115,7 +128,7 @@ public class Violation {
     }
 
     public void setDateOfDecision(Date dateOfDecision) {
-        this.dateOfDecision = dateOfDecision;
+        this.dateOfDecision = dateOfDecision.equals("") ? null : dateOfDecision;
     }
 
     @Column(name = "return_to_modify")
@@ -137,6 +150,7 @@ public class Violation {
     }
 
     @Column(name = "violation_address")
+    @NotBlank
     public String getViolationAddress() {
         return violationAddress;
     }

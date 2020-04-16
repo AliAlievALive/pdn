@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Протоколы</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 <div align="center">
@@ -54,9 +55,13 @@
             <td th:text="${violation.violationAddress}">Адрес нарушения</td>
             <td th:text="${violation.child}">ФИО ребенка</td>
             <td sec:authorize="hasRole('ADMIN')">
-                <a th:href="@{'/edit/' + ${violation.id}}">Внести правку</a>
+                <button type="button" class="btn btn-warning" th:href="@{'/edit/' + ${violation.id}}">
+                    Внести правку
+                </button>
                 <br/><br/>
-                <a th:href="@{'/delete/' + ${violation.id}}">Удалить протокол</a>
+                <button type="button" class="btn btn-danger" th:href="@{'/delete/' + ${violation.id}}">
+                    Удалить протокол
+                </button>
             </td>
         </tr>
         </tbody>

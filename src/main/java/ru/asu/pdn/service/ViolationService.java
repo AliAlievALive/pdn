@@ -5,7 +5,7 @@ import ru.asu.pdn.model.Violation;
 import java.util.List;
 
 public interface ViolationService {
-    List<Violation> listAll();
+    List<Violation> findAll();
 
     void save(Violation violation);
 
