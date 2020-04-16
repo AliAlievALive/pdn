@@ -10,8 +10,12 @@ import java.util.List;
 
 @Service
 public class ViolationServiceImpl implements ViolationService {
+    private final ViolationRepository repo;
+
     @Autowired
-    private ViolationRepository repo;
+    public ViolationServiceImpl(ViolationRepository repo) {
+        this.repo = repo;
+    }
 
     @Override
     public List<Violation> findAll() {

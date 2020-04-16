@@ -44,4 +44,9 @@ public class ChildServiceImpl implements ChildService {
     public List<Child> getAll() {
         return childRepository.findAll();
     }
+
+    @Override
+    public List<Child> findByFioOrSerialNumPass(String fio, String serialNumPass) {
+        return childRepository.findByFioOrSerialNumPass(fio, serialNumPass);
+    }
 }

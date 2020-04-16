@@ -16,4 +16,6 @@ public interface ChildService {
     Child edit(Child child);
 
     List<Child> getAll();
+
+    List<Child> findByFioOrSerialNumPass(String fio, String serialNumPass);
 }
