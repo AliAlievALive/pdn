@@ -3,37 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Добавление нового протокола</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
 </head>
 <body>
 <div align="center">
-    <h1>Добавление нового протокола</h1>
-    <h3><a href="/violations">Вернуться к списку протоколов</a></h3>
-    <br/>
+    <br/><br/><h2>Добавление нового протокола</h2><br/>
+    <a class="btn btn-info" href="/violations" role="button">Вернуться к списку протоколов</a>
+    <br/><br/>
     <form action="#" method="post" th:action="@{/new_violation}" th:object="${violation}">
-        <table border="1" cellpadding="10">
-            <thead>
-            <tr>
-                <th>Номер Протокола</th>
-                <th>Дата протокола</th>
-                <th>Статья нарушения</th>
-                <th>Дата рассмотрения</th>
-                <th>Тип наложенного наказания</th>
-                <th>Взыскание</th>
-                <th>Количество извещений</th>
-                <th>Судебное решение</th>
-                <th>Дата решения</th>
-                <th>Возвращено на доработку</th>
-                <th>Прекращено по сроку давности</th>
-                <th>Адрес нарушения</th>
-                <th>ФИО ребенка</th>
+        <table border="2" cellpadding="20" class="table">
+            <thead class="thead-dark">
+            <tr class="text-center">
+                <th class="align-middle">Номер Протокола</th>
+                <th class="align-middle">Дата протокола</th>
+                <th class="align-middle">Статья нарушения</th>
+                <th class="align-middle">Дата рассмотрения</th>
+                <th class="align-middle">Тип наложенного наказания</th>
+                <th class="align-middle">Взыскание</th>
+                <th class="align-middle">Количество извещений</th>
+                <th class="align-middle">Судебное решение</th>
+                <th class="align-middle">Дата решения</th>
+                <th class="align-middle">Возвращено на доработку</th>
+                <th class="align-middle">Прекращено по сроку давности</th>
+                <th class="align-middle">Адрес нарушения</th>
+                <th class="align-middle">ФИО ребенка</th>
+                <th class="align-middle">#</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
+            <tbody class="thead-light">
+            <tr class="text-center">
                 <th>
-                    <input type="text" th:field="*{numProtocol}"/>
-                    <span th:if="${#fields.hasErrors('numProtocol')}" th:errors="*{numProtocol}">
+                    <input th:field="*{numProtocol}" type="text"/>
+                    <span th:errors="*{numProtocol}" th:if="${#fields.hasErrors('numProtocol')}">
                         Номер протокола должен быть длиннее 2 и короче 10 символов
                     </span>
                 </th>
@@ -42,7 +44,7 @@
                 </th>
                 <th>
                     <input th:field="*{articleViolation}" type="text"/>
-                    <span th:if="${#fields.hasErrors('articleViolation')}" th:errors="*{articleViolation}">
+                    <span th:errors="*{articleViolation}" th:if="${#fields.hasErrors('articleViolation')}">
                         Ошибка в выборе статьи нарушения
                     </span>
                 </th>
@@ -51,7 +53,7 @@
                 </th>
                 <th>
                     <input th:field="*{punishmentType}" type="text"/>
-                    <span th:if="${#fields.hasErrors('punishmentType')}" th:errors="*{punishmentType}">
+                    <span th:errors="*{punishmentType}" th:if="${#fields.hasErrors('punishmentType')}">
                         Ошибка в выборе наложения
                     </span>
                 </th>
@@ -75,20 +77,20 @@
                 </th>
                 <th>
                     <input th:field="*{violationAddress}" type="text"/>
-                    <span th:if="${#fields.hasErrors('violationAddress')}" th:errors="*{violationAddress}">
+                    <span th:errors="*{violationAddress}" th:if="${#fields.hasErrors('violationAddress')}">
                         Адрес нарушения не может быть пустым
                     </span>
                 </th>
                 <th>
                     <input th:field="*{child}" type="text"/>
                 </th>
+                <th>
+                    <button class="btn btn-primary" type="submit">Сохранить</button>
+                </th>
             </tr>
             </tbody>
         </table>
         <br/>
-        <div align="right">
-            <button type="submit">Сохранить</button>
-        </div>
     </form>
 </div>
 </body>
